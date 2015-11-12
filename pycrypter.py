@@ -19,6 +19,7 @@ block = getBlock("testBlock")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
+
 print("Original Block:  "),
 print(block)
 print("Shifted Block:   "),
