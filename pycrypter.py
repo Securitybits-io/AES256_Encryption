@@ -19,6 +19,7 @@ key = getKey("testKey")
 block = getBlock("testBlock")
 
 shiftedBlock = shiftRows(block)
-
-#print (block)
-print (shiftedBlock)
+unShiftedBlock = shiftRowsInv(shiftedBlock)
+print(block)
+print(shiftedBlock)         ##Shifted and unshifted will present the same values, as they are referenced to the same memory region
+print(unShiftedBlock)
