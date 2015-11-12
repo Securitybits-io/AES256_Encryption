@@ -14,12 +14,11 @@ from readKeyFile import *
 from readBlockFile import *
 from RowShifter import *
 
-
 key = getKey("testKey")
 block = getBlock("testBlock")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
 print(block)
-print(shiftedBlock)         ##Shifted and unshifted will present the same values, as they are referenced to the same memory region
-print(unShiftedBlock)
+print(shiftedBlock)         # Shifted and un-shifted will present the same values
+print(unShiftedBlock)       # as they are referenced to the same memory region
