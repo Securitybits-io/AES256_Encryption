@@ -19,6 +19,9 @@ block = getBlock("testBlock")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
+print("Original Block:  "),
 print(block)
+print("Shifted Block:   "),
 print(shiftedBlock)         # Shifted and un-shifted will present the same values
+print("Unshifted Block: "),
 print(unShiftedBlock)       # as they are referenced to the same memory region
