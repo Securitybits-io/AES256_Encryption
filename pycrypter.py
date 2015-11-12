@@ -10,10 +10,15 @@
 #################################################################
 #!/usr/bin/python
 
-import readKeyFile, readBlockFile
+from readKeyFile import *
+from readBlockFile import *
+from RowShifter import *
 
-key = readKeyFile.getKey("testKey")
-print (key)
 
-block = readBlockFile.getBlock("testBlock")
-print(block)
+key = getKey("testKey")
+block = getBlock("testBlock")
+
+shiftedBlock = shiftRows(block)
+
+#print (block)
+print (shiftedBlock)
