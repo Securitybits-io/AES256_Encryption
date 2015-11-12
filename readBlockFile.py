@@ -1,4 +1,9 @@
 def getBlock(filename):
+    """
+    Method to convert a file containing blockdata in byteform to integer array
+    :param filename: input the filename containing string to convert to block
+    :return: Integer array from blockfile
+    """
     blockFile = open(filename, 'r')
     str = blockFile.read()
     intArray = []
