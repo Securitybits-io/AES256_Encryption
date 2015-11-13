@@ -1,20 +1,24 @@
 from myUtils import convertToMatrixBlock,convertFromMatrixBlock
-from mixColTables import *
+from mixColTables import getTable,getVector
+from copy import copy
 
 def mixColumn(column):
-    return column
+    tempCol = copy(column)
+    outColumn = []
 
-def mixColumnInv(column):
-    return column
+    for i in range(0,len(tempCol)):
+        xorCol = []
+        for j in range(0,4):
+            value = column[j]
+            table = getVector(i,j)
+            xorCol.append(getTable(value,table))
+
+        outColumn.append(xorCol[0] ^ xorCol[1] ^ xorCol[2] ^ xorCol[3])
+    return outColumn
 
 def mixColumns(block):
     inBlock = convertToMatrixBlock(block)
-    outMixBlock = []
-
-    return outMixBlock
-
-def mixColumnsInv(block):
-    inBlock = convertToMatrixBlock(block)
-    outUnMixBlock = []
-
-    return outUnMixBlock
+    mixBlock = []
+    for i in range(0,len(inBlock)):
+        mixBlock.append(mixColumn(inBlock[i]))
+    return convertFromMatrixBlock(mixBlock)
