@@ -1,6 +1,7 @@
 from myUtils import convertToMatrixBlock,convertFromMatrixBlock
 from mixColTables import getTable,getVector, getInvVector
 
+
 def mixColumn(column):
     outColumn = []
     for i in range(0,len(column)):
@@ -10,6 +11,7 @@ def mixColumn(column):
             xorCol.append(getTable(value,getVector(i,j)))
         outColumn.append(xorCol[0] ^ xorCol[1] ^ xorCol[2] ^ xorCol[3])
     return outColumn
+
 
 def mixInvColumn(column):
     outColumn = []
@@ -28,6 +30,7 @@ def mixColumns(block):
     for i in range(0,len(inBlock)):
         mixBlock.append(mixColumn(inBlock[i]))
     return convertFromMatrixBlock(mixBlock)
+
 
 def mixInvColumns(block):
     inBlock = convertToMatrixBlock(block)
