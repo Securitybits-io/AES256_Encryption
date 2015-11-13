@@ -14,6 +14,7 @@ from readKeyFile import *
 from readBlockFile import *
 from RowShifter import *
 from ColumnMixer import mixColumns, mixInvColumns
+from SubBytes import subBytes,subBytesInv
 from myUtils import convertToMatrixBlock
 
 key = getKey("testKey")
@@ -23,7 +24,8 @@ shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
 mixBlock = mixColumns(block)
 unMixedBlock = mixInvColumns(mixBlock)
-
+varSubBytes = subBytes(block)
+varSubInvBytes = subBytesInv(varSubBytes)
 print "\n"+"#"*91
 print("Original Block:  "),
 print(block)
@@ -35,4 +37,8 @@ print("Mixed Block:     "),
 print(mixBlock)
 print("UnMixed Block:   "),
 print(unMixedBlock)
+print("SubBytes:        "),
+print(varSubBytes)
+print("SubBytes Inverse:"),
+print(varSubInvBytes)
 print "#"*91
