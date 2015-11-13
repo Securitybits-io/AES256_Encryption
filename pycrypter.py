@@ -13,7 +13,7 @@
 from readKeyFile import *
 from readBlockFile import *
 from RowShifter import *
-from ColumnMixer import mixColumns
+from ColumnMixer import mixColumns, mixInvColumns
 from myUtils import convertToMatrixBlock
 
 key = getKey("testKey")
@@ -22,15 +22,15 @@ block = getBlock("testBlock")
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
 mixBlock = mixColumns(block)
-unMixedBlock = "-"*30+"Please hold!!"+"-"*30
+unMixedBlock = mixInvColumns(mixBlock)
 
 print "\n"+"#"*91
 print("Original Block:  "),
 print(block)
 print("Shifted Block:   "),
-print(shiftedBlock)         # Shifted and un-shifted will present the same values
+print(shiftedBlock)
 print("Unshifted Block: "),
-print(unShiftedBlock)       # as they are referenced to the same memory region
+print(unShiftedBlock)
 print("Mixed Block:     "),
 print(mixBlock)
 print("UnMixed Block:   "),
