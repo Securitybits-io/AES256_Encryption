@@ -19,6 +19,7 @@ from myUtils import convertToMatrixBlock
 
 key = getKey("testKey")
 block = getBlock("testBlock")
+largeBlock = getLargeBlock("testBlock2")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
@@ -26,17 +27,21 @@ mixBlock = mixColumns(block)
 unMixedBlock = mixInvColumns(mixBlock)
 varSubBytes = subBytes(block)
 varSubInvBytes = subBytesInv(varSubBytes)
+
 print "\n"+"#"*91
 print("Original Block:  "),
 print(block)
+print ("-"*91)
 print("Shifted Block:   "),
 print(shiftedBlock)
 print("Unshifted Block: "),
 print(unShiftedBlock)
+print ("-"*91)
 print("Mixed Block:     "),
 print(mixBlock)
 print("UnMixed Block:   "),
 print(unMixedBlock)
+print ("-"*91)
 print("SubBytes:        "),
 print(varSubBytes)
 print("SubBytes Inverse:"),
