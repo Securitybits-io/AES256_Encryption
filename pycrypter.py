@@ -15,11 +15,10 @@ from readBlockFile import *
 from RowShifter import *
 from ColumnMixer import mixColumns, mixInvColumns
 from SubBytes import subBytes,subBytesInv
-from myUtils import convertToMatrixBlock
 
 key = getKey("testKey")
 block = getBlock("testBlock")
-largeBlock = getLargeBlock("testBlock2")
+#largeBlock = getLargeBlock("testBlock2")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
