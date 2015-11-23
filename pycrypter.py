@@ -18,7 +18,6 @@ from SubBytes import subBytes,subBytesInv
 
 key = getKey("testKey")
 block = getBlock("testBlock")
-#largeBlock = getLargeBlock("testBlock2")
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
@@ -26,6 +25,8 @@ mixBlock = mixColumns(block)
 unMixedBlock = mixInvColumns(mixBlock)
 varSubBytes = subBytes(block)
 varSubInvBytes = subBytesInv(varSubBytes)
+print("Key:             "),
+print key
 
 print "\n"+"#"*91
 print("Original Block:  "),
