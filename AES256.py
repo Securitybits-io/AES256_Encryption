@@ -1,9 +1,8 @@
 from keyManager import expandKey,createRoundKey
 from AddRoundKey import addRoundKey
-from SubBytes import subBytes
-from RowShifter import shiftRows
-from ColumnMixer import mixColumns
-from myUtils import convertToKarlBlock
+from SubBytes import subBytes, subBytesInv
+from RowShifter import shiftRows, shiftRowsInv
+from ColumnMixer import mixColumns, mixInvColumns
 
 def encrypt(inBlock, key):
         outBlock = inBlock
@@ -27,6 +26,27 @@ def encrypt(inBlock, key):
         outBlock = addRoundKey(outBlock,createRoundKey(expandedKey,14)) #Add roundKey
 
         return outBlock
+
+
+def decrypt(inBlock, key):
+    outBlock = inBlock
+    numOfRounds = 14
+    expandedKey = expandKey(key)
+
+    #First round
+    outBlock = addRoundKey(outBlock,createRoundKey(expandedKey,numOfRounds))
+    outBlock = shiftRowsInv(outBlock)
+    outBlock = subBytesInv(outBlock)
+
+    for i in range(numOfRounds-1,0,-1):
+        outBlock = addRoundKey(outBlock, createRoundKey(expandedKey,i))
+        outBlock = mixInvColumns(outBlock)
+        outBlock = shiftRowsInv(outBlock)
+        outBlock = subBytesInv(outBlock)
+
+    #round 14
+    outBlock = addRoundKey(outBlock, createRoundKey(expandedKey, 0))
+    return outBlock
 
 
 def test():

@@ -21,7 +21,7 @@ def convertToKarlBlock(block):
     return blockArray
 
 
-def convertToKarlBlockInv(block):
+def convertFromKarlBlockInv(block):
     tempArray = block
     blockArray = []
     for row in range(0,4):

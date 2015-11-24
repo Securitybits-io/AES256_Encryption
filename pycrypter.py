@@ -18,7 +18,7 @@ from SubBytes import subBytes,subBytesInv
 from keyManager import expandKey,createRoundKey
 from AddRoundKey import addRoundKey
 from myUtils import *
-from AES256 import encrypt
+from AES256 import encrypt,decrypt
 
 key = getKey("testKey")
 block = getBlock("testBlock")
@@ -39,8 +39,8 @@ roundKey0 = createRoundKey(expandedKey,0)
 
 addedRoundKeyToBlock = addRoundKey(block, roundKey0)
 
-ecryptedBlock = encrypt(block,key)
-
+encryptedBlock = encrypt(block,key)
+decryptedBlock = decrypt(encryptedBlock, key)
 print("Key:             "),
 print key
 
@@ -50,7 +50,7 @@ print(block)
 print("Karl Block:      "),
 print(karlBlock)
 print("Karl Block Inv:  "),
-print convertToKarlBlockInv(karlBlock)
+print convertFromKarlBlockInv(karlBlock)
 print ("-"*91)
 print("Shifted Block:   "),
 print(shiftedBlock)
@@ -76,6 +76,7 @@ print("Added RoundKey:  "),
 print(addedRoundKeyToBlock)
 print ("-"*91)
 print("Encrypted block: "),
-print(ecryptedBlock)
-
+print(encryptedBlock)
+print("Decrypted block: "),
+print(decryptedBlock)
 print "#"*91
