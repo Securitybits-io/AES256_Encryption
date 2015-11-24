@@ -7,8 +7,7 @@ def mixColumn(column):
     for i in range(0,len(column)):
         xorCol = []
         for j in range(0,4):
-            value = column[j]
-            xorCol.append(getTable(value,getVector(i,j)))
+            xorCol.append(getTable(column[j],getVector(i,j)))
         outColumn.append(xorCol[0] ^ xorCol[1] ^ xorCol[2] ^ xorCol[3])
     return outColumn
 
@@ -18,8 +17,7 @@ def mixInvColumn(column):
     for i in range(0,len(column)):
         xorInvCol = []
         for j in range(0,4):
-            value = column[j]
-            xorInvCol.append(getTable(value,getInvVector(i,j)))
+            xorInvCol.append(getTable(column[j],getInvVector(i,j)))
         outColumn.append(xorInvCol[0] ^ xorInvCol[1] ^ xorInvCol[2] ^ xorInvCol[3])
     return outColumn
 
@@ -37,5 +35,4 @@ def mixInvColumns(block):
     outBlock = []
     for i in range(0,len(inBlock)):
         outBlock.append(mixInvColumn(inBlock[i]))
-
     return convertFromMatrixBlock(outBlock)

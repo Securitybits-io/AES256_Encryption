@@ -15,22 +15,42 @@ from readBlockFile import *
 from RowShifter import *
 from ColumnMixer import mixColumns, mixInvColumns
 from SubBytes import subBytes,subBytesInv
+from keyManager import expandKey,createRoundKey
+from AddRoundKey import addRoundKey
+from myUtils import *
+from AES256 import encrypt
 
 key = getKey("testKey")
 block = getBlock("testBlock")
+karlBlock = convertToKarlBlock(block)
+
 
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
+
 mixBlock = mixColumns(block)
 unMixedBlock = mixInvColumns(mixBlock)
+
 varSubBytes = subBytes(block)
 varSubInvBytes = subBytesInv(varSubBytes)
+
+expandedKey = expandKey(key)
+roundKey0 = createRoundKey(expandedKey,0)
+
+addedRoundKeyToBlock = addRoundKey(block, roundKey0)
+
+ecryptedBlock = encrypt(block,key)
+
 print("Key:             "),
 print key
 
 print "\n"+"#"*91
 print("Original Block:  "),
 print(block)
+print("Karl Block:      "),
+print(karlBlock)
+print("Karl Block Inv:  "),
+print convertToKarlBlockInv(karlBlock)
 print ("-"*91)
 print("Shifted Block:   "),
 print(shiftedBlock)
@@ -46,4 +66,16 @@ print("SubBytes:        "),
 print(varSubBytes)
 print("SubBytes Inverse:"),
 print(varSubInvBytes)
+print("-"*91)
+print("Expanded Key:    "),
+print expandedKey
+print("Round 0 Key:     "),
+print roundKey0
+print("-"*91)
+print("Added RoundKey:  "),
+print(addedRoundKeyToBlock)
+print ("-"*91)
+print("Encrypted block: "),
+print(ecryptedBlock)
+
 print "#"*91

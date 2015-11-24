@@ -11,13 +11,20 @@ def convertFromMatrixBlock(inBlock):
             tempList.append(row[i])
     return tempList
 
-'''
+
 def convertToKarlBlock(block):
     tempArray = block
     blockArray = []
     for row in range(0,4):
         for column in range(0,len(tempArray),4):
             blockArray.append(tempArray[column+row])
-    tempArray2 = blockArray
-    tblockArray = convertToMatrixBlock(blockArray)
-    return blockArray'''
+    return blockArray
+
+
+def convertToKarlBlockInv(block):
+    tempArray = block
+    blockArray = []
+    for row in range(0,4):
+        for column in range(0,len(tempArray),4):
+            blockArray.append(tempArray[column+row])
+    return blockArray
