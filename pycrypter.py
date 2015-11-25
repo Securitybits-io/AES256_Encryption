@@ -24,7 +24,6 @@ key = getKey("testKey")
 block = getBlock("testBlock")
 karlBlock = convertToKarlBlock(block)
 
-
 shiftedBlock = shiftRows(block)
 unShiftedBlock = shiftRowsInv(shiftedBlock)
 

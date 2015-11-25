@@ -31,7 +31,7 @@ def getLargeBlock(filename):
         while(len(tempArray)>=16):
             blockArray.append(tempArray[0:16])
             tempArray = tempArray[16:]
-            if (len(tempArray) < 16):
+            if (len(tempArray) < 16 and len(tempArray) > 0):
                 arr = [0]*16
                 n = 0
                 for item in tempArray:
