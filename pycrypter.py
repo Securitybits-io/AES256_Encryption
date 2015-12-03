@@ -21,9 +21,12 @@ from AES256 import encrypt,decrypt
 def encryptFile(filename, keyfile, outputFile):
     plainBlock = getLargeBlock(filename)
     encryptedBlock = []
+    lenFill = len(str(len(plainBlock)))
     boolWritten = False
     for i in range(len(plainBlock)):
         encryptedBlock.append(encrypt(plainBlock[i], getKey(keyfile)))
+        print "Encrypted: " + str(i).zfill(lenFill)+"/"+str(len(plainBlock)).zfill(lenFill)+"\r",
+    print("Encrypted: "+str(len(plainBlock)))
 
     boolWritten = writeToOutputHex(encryptedBlock, outputFile)
     if boolWritten == True:
@@ -37,6 +40,7 @@ def decryptFile(filename, keyfile, outputFile):
     boolWritten = False
     for i in range(len(inputBlock)):
         inputBlock[i] = decrypt(inputBlock[i], getKey(keyfile))
+        print str(i).zfill(8)+"/"+str(len(inputBlock)).zfill(8)+"\r",
 
     boolWritten = writeToOutputPlain(inputBlock, outputFile)
     if boolWritten == True:
@@ -45,13 +49,14 @@ def decryptFile(filename, keyfile, outputFile):
         return "Something went wrong, please check settings"
 
 
-
 def writeToOutputPlain(block, outputFilename):
     outputFile = open(outputFilename, "w")
+    lenFill = len(str(len(block)))
     k = 0
     while k < len(block):
         for j in range(0,len(block[k])):
             outputFile.write(chr(block[k][j]))
+        print "Written: "+str(k).zfill(lenFill)+"/"+str(len(block))+" to file "+outputFilename+" \r",
         k+=1
     outputFile.close()
     return True
@@ -60,10 +65,13 @@ def writeToOutputPlain(block, outputFilename):
 def writeToOutputHex(block, outputFilename):
     outputFile = open(outputFilename,"w")
     k = 0
+    lenFill = len(str(len(block)))
     while k < len(block):
         for j in range(0,len(block[k])):
             outputFile.write(hex(block[k][j])[2:].zfill(2))
+        print "Written: "+str(k).zfill(lenFill)+"/"+str(len(block))+" to file "+outputFilename+" \r",
         k+=1
+    print "Written: "+str(len(block)).zfill(lenFill)+" to file "+outputFilename
     outputFile.close()
     return True
 

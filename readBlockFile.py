@@ -27,6 +27,7 @@ def getLargeBlock(filename):
     str = blockFile.read().encode("hex")
     tempArray = []
     blockArray = []
+
     for i in range(0,len(str),2):
         tempArray.append(int(str[i:i+2],16))
 
@@ -41,6 +42,7 @@ def getLargeBlock(filename):
         while(len(tempArray)>=16):
             blockArray.append(tempArray[0:16])
             tempArray = tempArray[16:]
+            print "Reading file \r",
             if (len(tempArray) < 16 and len(tempArray) > 0):
                 arr = [0]*16
                 n = 0
