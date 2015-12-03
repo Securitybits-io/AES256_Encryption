@@ -47,13 +47,3 @@ def decrypt(inBlock, key):
     #round 14
     outBlock = addRoundKey(outBlock, createRoundKey(expandedKey, 0))
     return outBlock
-
-
-def test():
-    str = "6353e08c0960e104cd70b751bacad0e7"
-    tempTest = []
-    for i in range(0, (len(str)),2):
-           tempTest.append(int(str[i:i+2],16))
-    print tempTest
-
-test()
